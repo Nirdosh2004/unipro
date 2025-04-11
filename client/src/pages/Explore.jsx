@@ -10,7 +10,7 @@ const Explore = () => {
       <Hero />
       <StudentsCard />
       <CallToAction />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }
