@@ -1,85 +1,176 @@
-import React, { useContext, useState } from 'react'
-import { assets } from '../assets/assets'
-import { NavLink } from 'react-router-dom'
-import { AppContext } from '../context/AppContext'
+import React, { useContext, useState } from 'react';
+import { assets } from '../assets/assets';
+import { NavLink } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
 
 const Navbar = () => {
-  const { token, navigate, setToken } = useContext(AppContext)
-  const [visible, setVisible] = useState(false)
+  const { token, navigate, setToken } = useContext(AppContext);
+  const [visible, setVisible] = useState(false);
 
   const logout = () => {
-    navigate('/login')
-    setToken('')
-    localStorage.removeItem('token')
-  }
+    navigate('/login');
+    setToken('');
+    localStorage.removeItem('token');
+  };
+
+  // Active link styles
+  const getNavLinkStyle = ({ isActive }) =>
+    isActive
+      ? 'text-green-600 font-semibold border-b-2 border-green-600'
+      : 'text-gray-700 hover:text-green-500 transition-colors';
 
   return (
-    <>
-      {/* Navbar Container */}
-      <div className='flex mb-20 items-center justify-between gap-6 font-medium py-2'>
-        <img onClick={() => navigate('/')} src={assets.logo} className='w-20' alt="" />
-        <ul className='hidden border sm:flex border-green-200 px-5 py-2 drop-shadow-2xl rounded-2xl bg-green-100 gap-10'>
-          <NavLink to={'/'} className='flex flex-col items-center'>Explore</NavLink>
-          <NavLink to={'/students'} className='flex flex-col items-center'>Students</NavLink>
-          <NavLink to={'/'} className='flex flex-col items-center'>Assignments</NavLink>
-          <NavLink to={'/'} className='flex flex-col items-center'>Resources</NavLink>
-          <NavLink to={'/'} className='flex flex-col items-center'>About us</NavLink>
-        </ul>
+    <nav className="bg-white shadow-sm py-3 px-4 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        {/* Logo */}
+        <div
+          onClick={() => navigate('/')}
+          className="cursor-pointer flex items-center"
+        >
+          <img src={assets.logo} className="h-10" alt="Logo" />
+        </div>
 
-        {/* Separate container for profile and menu button */}
-        <div className='flex items-center gap-4'>
-          {/* Profile icon with dropdown */}
-          <div className='group relative'>
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center space-x-8">
+          <NavLink to="/" className={getNavLinkStyle}>
+            Explore
+          </NavLink>
+          <NavLink to="/students" className={getNavLinkStyle}>
+            Students
+          </NavLink>
+          <NavLink to="/assignments" className={getNavLinkStyle}>
+            Assignments
+          </NavLink>
+          <NavLink to="/resources" className={getNavLinkStyle}>
+            Resources
+          </NavLink>
+          <NavLink to="/about" className={getNavLinkStyle}>
+            About
+          </NavLink>
+        </div>
+
+        {/* User Profile & Mobile Menu */}
+        <div className="flex items-center space-x-4">
+          {/* Profile Dropdown */}
+          <div className="relative group">
             <img
               onClick={() => token ? null : navigate('/login')}
-              className='w-8 cursor-pointer'
               src={assets.default_user}
-              alt=""
+              className="h-8 w-8 rounded-full cursor-pointer hover:ring-2 hover:ring-green-200"
+              alt="User"
             />
             {token && (
-              <div className='group-hover:block hidden absolute dropdown-menu border border-[#C0C0C0] rounded right-0'>
-                <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded'>
-                  <p onClick={() => navigate('/profile')} className='cursor-pointer text-black font-medium'>Profile</p>
-                  <p onClick={logout} className='cursor-pointer text-red-600'>Logout</p>
-                </div>
+              <div className="absolute right-0  w-48 bg-white rounded-md shadow-lg py-1 hidden group-hover:block z-50">
+                <NavLink
+                  to="/profile"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  Profile
+                </NavLink>
+                <button
+                  onClick={logout}
+                  className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                >
+                  Logout
+                </button>
               </div>
             )}
           </div>
 
-          {/* Menu button - visible only on mobile */}
-          <img
+          {/* Mobile Menu Button */}
+          <button
             onClick={() => setVisible(true)}
-            src={assets.menu_icon}
-            className='w-5 cursor-pointer sm:hidden'
-            alt=""
-          />
-        </div>
-
-        {/* Mobile menu */}
-        <div className={`fixed inset-0 z-50 bg-white transition-all duration-300 ease-in-out transform ${visible ? 'translate-x-0' : 'translate-x-full'}`}>
-          <div className='flex flex-col text-gray-800 h-full'>
-            <div onClick={() => setVisible(false)} className='flex items-center gap-4 p-3 cursor-pointer'>
-              <img src={assets.right_arrow} className='h-4 rotate-0' alt="" />
-              <p>Back</p>
-            </div>
-            <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border-b-2 border-gray-400 rounded-r-md ' to='/'>Explore</NavLink>
-            <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border-b-2 border-gray-400 rounded-r-md' to='/students'>Students</NavLink>
-            <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border-b-2 border-gray-400 rounded-r-md' to='/about'>Assignments</NavLink>
-            <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border-b-2 border-gray-400 rounded-r-md' to='/contact'>Resources</NavLink>
-            <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border-b-2 border-gray-400 rounded-r-md' to='/contact'>About us</NavLink>
-          </div>
+            className="md:hidden p-1 rounded-md hover:bg-gray-100"
+          >
+            <img src={assets.menu_icon} className="h-6 w-6" alt="Menu" />
+          </button>
         </div>
       </div>
 
-      {/* Overlay for when menu is open */}
+      {/* Mobile Menu with Blur Background */}
       {visible && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40"
-          onClick={() => setVisible(false)}
-        />
-      )}
-    </>
-  )
-}
+        <>
+          {/* Blurry Background Overlay */}
+          <div
+            className="md:hidden fixed inset-0 z-40 backdrop-blur-sm bg-black/30"
+            onClick={() => setVisible(false)}
+          />
 
-export default Navbar
+          {/* Mobile Menu Panel */}
+          <div className="md:hidden fixed inset-y-0 right-0 z-50 w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out">
+            <div className="flex flex-col h-full">
+              {/* Close Button */}
+              <div className="flex justify-end p-4">
+                <button
+                  onClick={() => setVisible(false)}
+                  className="p-1 rounded-md hover:bg-gray-100"
+                >
+                  <img src={assets.right_arrow} className="h-5 w-5" alt="Close" />
+                </button>
+              </div>
+
+              {/* Mobile Navigation Links */}
+              <div className="flex-1 flex flex-col px-4 space-y-2">
+                <NavLink
+                  to="/"
+                  onClick={() => setVisible(false)}
+                  className={({ isActive }) =>
+                    `py-3 px-4 rounded-md ${isActive ? 'bg-green-50 text-green-600 font-medium' : 'text-gray-700 hover:bg-gray-100'}`
+                  }
+                >
+                  Explore
+                </NavLink>
+                <NavLink
+                  to="/students"
+                  onClick={() => setVisible(false)}
+                  className={({ isActive }) =>
+                    `py-3 px-4 rounded-md ${isActive ? 'bg-green-50 text-green-600 font-medium' : 'text-gray-700 hover:bg-gray-100'}`
+                  }
+                >
+                  Students
+                </NavLink>
+                <NavLink
+                  to="/assignments"
+                  onClick={() => setVisible(false)}
+                  className={({ isActive }) =>
+                    `py-3 px-4 rounded-md ${isActive ? 'bg-green-50 text-green-600 font-medium' : 'text-gray-700 hover:bg-gray-100'}`
+                  }
+                >
+                  Assignments
+                </NavLink>
+                <NavLink
+                  to="/resources"
+                  onClick={() => setVisible(false)}
+                  className={({ isActive }) =>
+                    `py-3 px-4 rounded-md ${isActive ? 'bg-green-50 text-green-600 font-medium' : 'text-gray-700 hover:bg-gray-100'}`
+                  }
+                >
+                  Resources
+                </NavLink>
+                <NavLink
+                  to="/about"
+                  onClick={() => setVisible(false)}
+                  className={({ isActive }) =>
+                    `py-3 px-4 rounded-md ${isActive ? 'bg-green-50 text-green-600 font-medium' : 'text-gray-700 hover:bg-gray-100'}`
+                  }
+                >
+                  About
+                </NavLink>
+              </div>
+
+              {/* User Info */}
+              {token && (
+                <div className="p-4 border-t">
+                  <p className="text-sm text-gray-500">Logged in as:</p>
+                  <p className="font-medium">{localStorage.getItem('username') || 'User'}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;

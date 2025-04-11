@@ -8,6 +8,8 @@ import { Route, Routes } from 'react-router-dom'
 import Explore from './pages/Explore'
 import Students from './pages/Students'
 import Login from './pages/Login'
+import { Assignments } from './pages/Assignments'
+import Resources from './pages/Resources'
 
 
 
@@ -23,6 +25,8 @@ const App = () => {
           <Route path='/' element={<Explore />} />
           <Route path='/students' element={<Students />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/assignments' element={<Assignments />} />
+          <Route path='/resources' element={<Resources />} />
         </Routes>
       </div>
 

@@ -7,6 +7,11 @@ import banner from './banner_1.png'
 import hero_img from './hero_img1.png'
 import github_icon from './github.png'
 import linkedin from './linkedin.png'
+import facebook from './facebook.png'
+import instagram from './instagram.png'
+import location from './location.png'
+import email from './email.png'
+import phone from './phone-call.png'
 
 export const assets = {
   logo,
@@ -17,7 +22,12 @@ export const assets = {
   banner,
   hero_img,
   github_icon,
-  linkedin
+  linkedin,
+  facebook,
+  instagram,
+  location,
+  email,
+  phone
 }
 
 export const students = [
@@ -322,3 +332,142 @@ export const students = [
     }
   }
 ]
+
+export const assignments = [
+  {
+    id: 1,
+    teacherName: "Dr. Sarah Johnson",
+    subject: "Mathematics",
+    topic: "Linear Algebra Applications",
+    body: [
+      "• 5-page paper on linear algebra in computer graphics",
+      "• 3 real-world examples with diagrams",
+      "• Cover matrix transformations & vector spaces"
+    ],
+    submitDate: "2023-11-15",
+    dueDate: "2023-12-01"
+  },
+  {
+    id: 2,
+    teacherName: "Prof. Michael Chen",
+    subject: "Computer Science",
+    topic: "React Component Design",
+    body: [
+      "• Build React app with 3 interconnected components",
+      "• Must include: form, display, and control components",
+      "• Use state management hooks",
+      "• Deploy to Vercel"
+    ],
+    submitDate: "2023-11-10",
+    dueDate: "2023-11-25"
+  },
+  {
+    id: 3,
+    teacherName: "Dr. Emily Rodriguez",
+    subject: "Literature",
+    topic: "Modernist Poetry Analysis",
+    body: [
+      "• 1500-word analysis of 'The Waste Land'",
+      "• Focus on fragmented structure & post-war themes",
+      "• Examine 3 literary devices",
+      "• Compare with another modernist work",
+      "• MLA citations required"
+    ],
+    submitDate: "2023-11-05",
+    dueDate: "2023-11-20"
+  }
+];
+
+export const resources = [
+  {
+    id: 1,
+    subjectName: "Computer Science",
+    courseName: "Advanced React Patterns",
+    driveLink: "https://drive.google.com/drive/folders/abc123xyz",
+    teacherName: "Prof. Alan Turing",
+    topicName: "State Management with Context API",
+    bio: "Learn advanced state management techniques using React's Context API. Covers performance optimization patterns and real-world implementation scenarios."
+  },
+  {
+    id: 2,
+    subjectName: "Mathematics",
+    courseName: "Linear Algebra II",
+    driveLink: "https://drive.google.com/drive/folders/def456uvw",
+    teacherName: "Dr. Emmy Noether",
+    topicName: "Vector Spaces",
+    bio: "Deep dive into vector spaces and linear transformations. Includes problem sets with solutions and 3D visualization examples."
+  },
+  {
+    id: 3,
+    subjectName: "Physics",
+    courseName: "Quantum Mechanics",
+    driveLink: "https://drive.google.com/drive/folders/ghi789rst",
+    teacherName: "Dr. Richard Feynman",
+    topicName: "Wave-Particle Duality",
+    bio: "Comprehensive notes on double-slit experiments and Schrödinger's equation. Contains animated simulations and practice problems."
+  },
+  {
+    id: 4,
+    subjectName: "Literature",
+    courseName: "Modernist Poetry",
+    driveLink: "https://drive.google.com/drive/folders/jkl012mno",
+    teacherName: "Prof. Virginia Woolf",
+    topicName: "Imagism Movement",
+    bio: "Analysis of Ezra Pound and H.D.'s works. Includes annotated poems and comparative study guides."
+  },
+  {
+    id: 5,
+    subjectName: "Biology",
+    courseName: "Molecular Genetics",
+    driveLink: "https://drive.google.com/drive/folders/pqr345stu",
+    teacherName: "Dr. Rosalind Franklin",
+    topicName: "DNA Replication",
+    bio: "Detailed breakdown of replication forks and polymerase enzymes. Features lab protocol videos and 3D model diagrams."
+  },
+  {
+    id: 6,
+    subjectName: "Economics",
+    courseName: "Behavioral Economics",
+    driveLink: "https://drive.google.com/drive/folders/vwx678yza",
+    teacherName: "Prof. Daniel Kahneman",
+    topicName: "Cognitive Biases",
+    bio: "Case studies on prospect theory and decision-making heuristics. Includes experimental datasets and analysis templates."
+  },
+  {
+    id: 7,
+    subjectName: "Art History",
+    courseName: "Renaissance Art",
+    driveLink: "https://drive.google.com/drive/folders/bcd901efg",
+    teacherName: "Dr. Giorgio Vasari",
+    topicName: "Florentine Masters",
+    bio: "High-resolution artwork scans with compositional analysis. Comparison of techniques by Michelangelo and Da Vinci."
+  },
+  {
+    id: 8,
+    subjectName: "Chemistry",
+    courseName: "Organic Chemistry",
+    driveLink: "https://drive.google.com/drive/folders/hij234klm",
+    teacherName: "Dr. Marie Curie",
+    topicName: "Stereochemistry",
+    bio: "Interactive models of chiral molecules and reaction mechanisms. Includes practice problems with step-by-step solutions."
+  },
+  {
+    id: 9,
+    subjectName: "Political Science",
+    courseName: "International Relations",
+    driveLink: "https://drive.google.com/drive/folders/nop567qrs",
+    teacherName: "Prof. Noam Chomsky",
+    topicName: "Power Structures",
+    bio: "Case studies on soft power and diplomatic strategies. Contains treaty analysis frameworks and debate prompts."
+  },
+  {
+    id: 10,
+    subjectName: "Environmental Science",
+    courseName: "Climate Systems",
+    driveLink: "https://drive.google.com/drive/folders/tuv890wxy",
+    teacherName: "Dr. James Lovelock",
+    topicName: "Gaia Hypothesis",
+    bio: "Multidisciplinary approach to Earth system science. Features climate model datasets and policy impact analyses."
+  }
+];
+
