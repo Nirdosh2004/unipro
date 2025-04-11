@@ -8,7 +8,9 @@ const StudentsCard = () => {
   return (
     <div className="container mx-auto px-4 py-8 mt-10">
       <h1 className="text-3xl font-medium text-center mb-1">Step into the world of tech talent with our brightest minds</h1>
-      <p className='flex text-center items-center px-50 py-10'>Lorem ipsum dolor, sit amet consectetur  adipisicing elit. Magnam cupiditate libero aspernatur et asperiores suscipit nesciunt earum aliquid consequuntur iure, optio quam. Voluptatum molestiae ab, alias quas blanditiis sapiente. Debitis?</p>
+      <p class="text-sm sm:text-base md:text-lg text-gray-800">
+        A responsive layout adjusts smoothly across devices, ensuring optimal readability on phones, tablets, and desktops. Modern CSS frameworks like Tailwind make this easier with utility classes.
+      </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {displayStudent.map((student) => (

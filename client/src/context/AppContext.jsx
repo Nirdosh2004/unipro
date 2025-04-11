@@ -7,7 +7,7 @@ export const AppContext = createContext()
 
 export const AppContextProvider = (props) => {
 
-  const [token, setToken] = useState('k')
+  const [token, setToken] = useState('jj')
 
   const navigate = useNavigate()
 

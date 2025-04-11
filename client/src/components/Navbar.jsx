@@ -18,7 +18,7 @@ const Navbar = () => {
       {/* Navbar Container */}
       <div className='flex mb-20 items-center justify-between gap-6 font-medium py-2'>
         <img onClick={() => navigate('/')} src={assets.logo} className='w-20' alt="" />
-        <ul className='hidden border sm:flex border-gray-200 px-5 py-2 drop-shadow-2xl rounded-2xl bg-gray-200 gap-10'>
+        <ul className='hidden border sm:flex border-green-200 px-5 py-2 drop-shadow-2xl rounded-2xl bg-green-100 gap-10'>
           <NavLink to={'/'} className='flex flex-col items-center'>Explore</NavLink>
           <NavLink to={'/students'} className='flex flex-col items-center'>Students</NavLink>
           <NavLink to={'/'} className='flex flex-col items-center'>Assignments</NavLink>

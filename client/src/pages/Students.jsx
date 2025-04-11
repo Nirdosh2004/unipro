@@ -53,7 +53,7 @@ const Students = () => {
       {/* Mobile Filter Toggle Button */}
       <button
         onClick={() => setShowFilters(!showFilters)}
-        className="md:hidden bg-blue-500 text-white p-2 flex items-center justify-center"
+        className="md:hidden bg-green-300 rounded drop-shadow-2xl text-black p-2 flex items-center justify-center"
       >
         {showFilters ? 'Hide Filters' : 'Show Filters'}
         <svg
@@ -69,10 +69,10 @@ const Students = () => {
       {/* Filters Sidebar - Hidden on mobile unless toggled */}
       <div className={`${showFilters ? 'block' : 'hidden'} md:block w-full md:w-3/12 bg-white p-4 border-r border-gray-200`}>
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">Filters</h2>
+          <h2 className="text-xl font-semibold">Filters</h2>
           <button
             onClick={clearFilters}
-            className="text-sm text-blue-500 hover:text-blue-700"
+            className="text-sm text-blue-500 hover:text-blue-700 cursor-pointer"
           >
             Clear All
           </button>
@@ -83,7 +83,7 @@ const Students = () => {
           <input
             type="text"
             placeholder="Search students..."
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border border-gray-400 drop-shadow-2xl rounded"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
