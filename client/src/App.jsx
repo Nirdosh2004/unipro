@@ -12,6 +12,7 @@ import { Assignments } from './pages/Assignments'
 import Resources from './pages/Resources'
 import Footer from './components/Footer'
 import About from './pages/About'
+import Profile from './pages/Profile'
 
 
 
@@ -30,6 +31,7 @@ const App = () => {
           <Route path='/assignments' element={<Assignments />} />
           <Route path='/resources' element={<Resources />} />
           <Route path='/about' element={<About />} />
+          <Route path='/profile' element={<Profile />} />
         </Routes>
       </div>
       <Footer />
