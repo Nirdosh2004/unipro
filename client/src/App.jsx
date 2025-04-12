@@ -15,6 +15,8 @@ import Footer from './components/Footer'
 import About from './pages/About'
 import Profile from './pages/Profile'
 
+export const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 const App = () => {
   return (
     <div className='mx-10 my-5'>
