@@ -1,8 +1,12 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { resources } from "../assets/assets";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Resources = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
   const [hoveredCard, setHoveredCard] = useState(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);

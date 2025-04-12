@@ -315,7 +315,7 @@
 // export default About;
 
 import { motion, useMotionValue, useTransform, AnimatePresence } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FiGithub, FiLinkedin, FiExternalLink, FiClock, FiMapPin, FiCode, FiLayers } from "react-icons/fi";
 
 // Animation variants
@@ -366,6 +366,10 @@ const orbVariants = {
 };
 
 const About = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
   const [activeTab, setActiveTab] = useState('about');
   const [hoveredCard, setHoveredCard] = useState(null);
   const constraintsRef = useRef(null);

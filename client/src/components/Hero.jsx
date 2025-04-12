@@ -35,7 +35,7 @@ const Hero = () => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className='mx-4 md:mx-10 my-8 md:my-12 flex flex-col lg:flex-row bg-gradient-to-r from-green-50 via-white to-green-50 rounded-3xl overflow-hidden border border-green-200 shadow-xl hover:shadow-2xl transition-shadow duration-500'
+      className='mx-4 md:mx-10 my-8 md:my-12 flex flex-col lg:flex-row bg-gradient-to-r from-green-200 via-white to-green-100 rounded-3xl overflow-hidden border border-green-200 shadow-xl hover:shadow-2xl transition-shadow duration-500'
     >
       {/* Hero Left Side */}
       <div className='w-full lg:w-1/2 flex items-center justify-center py-8 md:py-12 px-6 md:px-12 lg:px-16 order-2 lg:order-1'>

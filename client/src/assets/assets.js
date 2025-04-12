@@ -48,23 +48,23 @@ export const students = [
       portfolio: "https://aaravsharma.dev"
     }
   },
-  // {
-  //   name: "Priya Patel",
-  //   enrollmentNo: "COE2021022",
-  //   email: "priya.patel@vit.ac.in",
-  //   skills: ["Flutter", "Firebase", "Java", "Kotlin", "UI/UX", "Figma", "Swift", "Dart", "CI/CD", "REST APIs"],
-  //   projects: [
-  //     { title: "EduTrack", description: "Mobile app for college students to manage assignments, deadlines, and GPA tracking." },
-  //     { title: "PetAdopt", description: "Tinder-like app for pet adoption with shelter connectivity and vet chat." },
-  //     { title: "ShopLocal", description: "E-commerce platform for small businesses with zero commission fees." },
-  //     { title: "FitJourney", description: "Workout planner with posture correction using phone's motion sensors." }
-  //   ],
-  //   social: {
-  //     github: "https://github.com/priya-codes",
-  //     linkedin: "https://linkedin.com/in/priya-patel",
-  //     twitter: "https://twitter.com/priya_flutter"
-  //   }
-  // },
+  {
+    name: "Priya Patel",
+    enrollmentNo: "COE2021022",
+    email: "priya.patel@vit.ac.in",
+    skills: ["Flutter", "Firebase", "Java", "Kotlin", "UI/UX", "Figma", "Swift", "Dart", "CI/CD", "REST APIs"],
+    projects: [
+      { title: "EduTrack", description: "Mobile app for college students to manage assignments, deadlines, and GPA tracking." },
+      { title: "PetAdopt", description: "Tinder-like app for pet adoption with shelter connectivity and vet chat." },
+      { title: "ShopLocal", description: "E-commerce platform for small businesses with zero commission fees." },
+      { title: "FitJourney", description: "Workout planner with posture correction using phone's motion sensors." }
+    ],
+    social: {
+      github: "https://github.com/priya-codes",
+      linkedin: "https://linkedin.com/in/priya-patel",
+      twitter: "https://twitter.com/priya_flutter"
+    }
+  },
   {
     name: "Rahul Verma",
     enrollmentNo: "COE2021033",

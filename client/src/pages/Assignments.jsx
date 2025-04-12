@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { assignments } from "../assets/assets";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Animation variants
 const containerVariants = {
@@ -41,6 +41,11 @@ const buttonVariants = {
 };
 
 export const Assignments = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
   const [hoveredCard, setHoveredCard] = useState(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
