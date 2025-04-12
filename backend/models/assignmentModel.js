@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const assignmentSchema = new mongoose.Schema({
   subjectName: {
@@ -116,6 +116,6 @@ assignmentSchema.virtual('status').get(function () {
   return 'Active';
 });
 
-const assignmentModel = mongoose.models.assignments || mongoose.model('Assignments', assignmentSchema);
+const assignmentsModel = mongoose.models.assignments || mongoose.model('Assignments', assignmentSchema);
 
-export default assignmentModel;
+export default assignmentsModel;
