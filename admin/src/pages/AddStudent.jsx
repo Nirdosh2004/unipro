@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FaUserGraduate, FaEnvelope, FaGithub, FaLinkedin, FaTools, FaProjectDiagram,
   FaPlusCircle, FaCodeBranch, FaLink, FaTrash, FaStar, FaGraduationCap
@@ -7,6 +7,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { backendUrl } from '../App';
 
 const AddStudent = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
   const [student, setStudent] = useState({
     name: '',
     enrollmentNo: '',

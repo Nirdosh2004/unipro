@@ -47,7 +47,7 @@ export const addResource = async (req, res) => {
 
 export const listResource = async (req, res) => {
   try {
-    const resources = await resourcesModel.find({ isApproved: true }).sort({ publishedDate: -1 });
+    const resources = await resourcesModel.find({}).sort({ publishedDate: -1 }); // Remove the filter
 
     res.status(200).json({
       success: true,

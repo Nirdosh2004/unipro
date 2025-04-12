@@ -21,6 +21,9 @@ const ADMIN_CREDENTIALS = {
 };
 
 const App = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 

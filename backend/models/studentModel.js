@@ -23,7 +23,7 @@ const studentSchema = new mongoose.Schema({
   about: {
     type: String,
     required: [true, 'About section is required'],
-    minlength: [50, 'About should be at least 50 characters'],
+    minlength: [10, 'About should be at least 50 characters'],
     maxlength: [500, 'About cannot exceed 500 characters']
   },
   technicalSkills: {
@@ -46,7 +46,7 @@ const studentSchema = new mongoose.Schema({
       bio: {
         type: String,
         required: [true, 'Project bio is required'],
-        minlength: [30, 'Project bio should be at least 30 characters'],
+        minlength: [10, 'Project bio should be at least 30 characters'],
         maxlength: [300, 'Project bio cannot exceed 300 characters']
       },
       technologies: {
