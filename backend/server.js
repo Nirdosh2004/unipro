@@ -3,6 +3,8 @@ import cors from 'cors'
 import 'dotenv/config'
 import connectDB from './config/mongodb.js';
 import studentRouter from './routes/studentRoute.js';
+import assignmentRouter from './routes/assignmentRoute.js';
+import resourceRouter from './routes/resourceRoute.js';
 
 
 // App config
@@ -17,7 +19,8 @@ app.use(cors())
 
 // API endpoints
 app.use('/api/student', studentRouter)
-
+app.use('/api/assignment', assignmentRouter)
+app.use('/api/resource', resourceRouter)
 
 
 
