@@ -19,9 +19,12 @@ const Navbar = () => {
         {/* Logo with enhanced animation */}
         <div
           onClick={() => navigate('/')}
-          className="cursor-pointer flex items-center hover:scale-105 transition-transform duration-300 hover:rotate-1"
+          className="cursor-pointer flex items-center gap-2 hover:scale-105 transition-transform duration-300 hover:rotate-1"
         >
           <img src={assets.logo} className="h-10" alt="Logo" />
+          <span className="text-sm bg-green-100 text-green-600 px-2 py-1 rounded-lg shadow">
+            UniPro
+          </span>
         </div>
 
         {/* Desktop Navigation with enhanced animations */}
@@ -43,12 +46,12 @@ const Navbar = () => {
           </NavLink>
 
           {/* Admin Dashboard Button - Always visible */}
-          <button
+          {/* <button
             onClick={() => navigate('/admin')}
             className="px-4 cursor-pointer py-1 rounded-lg bg-gradient-to-r from-gray-200 to-gray-400 text-black shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg hover:from-gray-300 hover:to-gray-500 active:scale-95"
           >
             Admin Dashboard
-          </button>
+          </button> */}
         </div>
 
         {/* Mobile Menu Button with enhanced animation */}
@@ -121,7 +124,7 @@ const Navbar = () => {
                 ))}
 
                 {/* Admin Dashboard Button for mobile */}
-                <button
+                {/* <button
                   onClick={() => {
                     navigate('/admin');
                     setVisible(false);
@@ -130,7 +133,7 @@ const Navbar = () => {
                 >
                   <span className="mr-2"></span>
                   Admin Dashboard
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
