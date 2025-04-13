@@ -64,7 +64,7 @@ const App = () => {
   };
 
   return (
-    <div className='mx-10 my-5 font-medium'>
+    <div className='mx-1 my-3 font-medium'>
       <ToastContainer />
       <Routes>
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
