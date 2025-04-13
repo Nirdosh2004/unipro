@@ -5,7 +5,22 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   const { navigate, token } = useContext(AppContext);
-  const [isHovered, setIsHovered] = useState(false);
+  const [currentTagline, setCurrentTagline] = useState(0);
+
+  const taglines = [
+    "Unlock your hidden talents, and watch your passions soar.",
+    "Expand your horizons, and realize the full scope of your potential.",
+    "Cultivate your interests, and scale them to extraordinary heights.",
+    "Discover what you're truly capable of, and elevate your passions."
+  ];
+
+  // Rotate taglines every 3 seconds
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTagline((prev) => (prev + 1) % taglines.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   // Animation variants
   const containerVariants = {
@@ -30,19 +45,28 @@ const Hero = () => {
     }
   };
 
+  const buttonVariants = {
+    hover: {
+      scale: 1.05,
+      boxShadow: "0 10px 20px rgba(0,0,0,0.1)",
+      cursor: "pointer"
+    },
+    tap: { scale: 0.98 }
+  };
+
   return (
     <motion.div
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className='mx-4 md:mx-10 my-8 md:my-12 flex flex-col lg:flex-row bg-gradient-to-r from-green-200 via-white to-green-100 rounded-3xl overflow-hidden border border-green-200 shadow-xl hover:shadow-2xl transition-shadow duration-500'
+      className='mx-4 md:mx-10 my-8 md:my-12 flex flex-col lg:flex-row bg-gradient-to-br from-emerald-300 via-white to-emerald-500 rounded-3xl overflow-hidden border border-green-100 shadow-xl hover:shadow-2xl transition-all duration-500'
     >
       {/* Hero Left Side */}
       <div className='w-full lg:w-1/2 flex items-center justify-center py-8 md:py-12 px-6 md:px-12 lg:px-16 order-2 lg:order-1'>
         <motion.div className='text-gray-800' variants={containerVariants}>
-          <motion.div className='mb-6' variants={itemVariants}>
+          <motion.div className='mb-6 flex flex-wrap gap-3' variants={itemVariants}>
             <span className='relative inline-block bg-gradient-to-r from-green-600 to-emerald-500 text-white text-xs md:text-sm font-semibold px-4 py-1.5 rounded-full shadow-md overflow-hidden'>
-              <span className='relative z-10'>NEW: Without AI Insights</span>
+              <span className='relative z-10'>NEW: Student Portfolio Assistant</span>
               <span className='absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-400 opacity-0 hover:opacity-100 transition-opacity duration-300'></span>
             </span>
           </motion.div>
@@ -51,56 +75,65 @@ const Hero = () => {
             className='font-bold text-4xl sm:text-5xl lg:text-6xl leading-tight mb-4'
             variants={itemVariants}
           >
-            Unlock Hidden <span className='text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500'>Learning Patterns</span>
+            Discover Your <span className='text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500'>Full Potential</span>
           </motion.h1>
 
-          <motion.p
-            className='text-base md:text-lg text-gray-700 mb-8 leading-relaxed'
+          <motion.div
+            className="h-16 mb-6 overflow-hidden relative"
             variants={itemVariants}
           >
-            Go beyond traditional grades with our intelligent analytics platform that reveals student strengths, predicts challenges, and personalizes learning paths.
-          </motion.p>
+            {taglines.map((tagline, index) => (
+              <motion.p
+                key={index}
+                className='text-base md:text-lg text-gray-700 leading-relaxed absolute w-full'
+                initial={{ y: 20, opacity: 0 }}
+                animate={{
+                  y: currentTagline === index ? 0 : -20,
+                  opacity: currentTagline === index ? 1 : 0
+                }}
+                transition={{ duration: 0.5 }}
+              >
+                {tagline}
+              </motion.p>
+            ))}
+          </motion.div>
 
           <motion.div
             className='flex flex-col sm:flex-row gap-4 mb-8'
             variants={itemVariants}
           >
-            {!token && (
-              <button
-                onClick={() => navigate('/login')}
-                className='relative overflow-hidden bg-gradient-to-r from-green-600 to-emerald-500 text-white font-semibold px-8 py-3.5 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:scale-[1.02] group'
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              >
-                <span className='relative z-10 flex items-center justify-center'>
-                  Get Started - It's Free
-                  <svg
-                    className={`ml-2 w-4 h-4 transition-transform duration-300 ${isHovered ? 'translate-x-1' : ''}`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </span>
-                <span className='absolute inset-0 bg-gradient-to-r from-emerald-500 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300'></span>
-              </button>
-            )}
-            <button className='flex items-center justify-center border-2 border-green-600 hover:bg-green-600 hover:text-white text-green-600 font-medium px-6 py-3 rounded-lg transition-all duration-300 group'>
-              <span>See How It Works</span>
-              <svg
-                className='ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1'
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            <motion.button
+              onClick={() => navigate('/resources')}
+              className='relative overflow-hidden flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-500 text-white font-semibold px-8 py-3.5 rounded-lg shadow-md hover:shadow-lg group'
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              <span className='relative z-10 flex items-center'>
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Study Resources
+              </span>
+              <span className='absolute inset-0 bg-gradient-to-r from-indigo-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300'></span>
+            </motion.button>
+
+            <motion.button
+              onClick={() => navigate('/assignments')}
+              className='flex items-center justify-center bg-white border-2 border-emerald-500 hover:bg-emerald-50 text-emerald-600 font-semibold px-8 py-3.5 rounded-lg shadow-sm group'
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
               </svg>
-            </button>
+              My Assignments
+            </motion.button>
           </motion.div>
 
           <motion.div
-            className='flex flex-col sm:flex-row gap-4 text-sm text-gray-600'
+            className='flex flex-wrap gap-4 text-sm text-gray-600'
             variants={itemVariants}
           >
             <div className='flex items-center'>
@@ -112,7 +145,7 @@ const Hero = () => {
                 </div>
                 <div className='absolute inset-0 rounded-full border-2 border-green-200 animate-ping opacity-0'></div>
               </div>
-              <span>Paisa nhi lunga bhai</span>
+              <span>100% Free (till I get greedy)</span>
             </div>
             <div className='flex items-center'>
               <div className='relative mr-2'>
@@ -123,7 +156,7 @@ const Hero = () => {
                 </div>
                 <div className='absolute inset-0 rounded-full border-2 border-green-200 animate-ping opacity-0 animation-delay-300'></div>
               </div>
-              <span>30-second setup</span>
+              <span>Free because I haven't added a "Buy Me a Coffee" button yet.</span>
             </div>
           </motion.div>
         </motion.div>
@@ -136,22 +169,39 @@ const Hero = () => {
       >
         <div className='relative h-64 md:h-80 lg:h-full w-full overflow-hidden'>
           <img
-            className='w-full h-full object-cover transition-transform duration-700 hover:scale-105'
+            className='w-full h-full max-h-[550px] object-contain transition-transform duration-700 hover:scale-105'
             src={assets.banner}
             alt="Education analytics dashboard showing student progress"
           />
-          <div className='absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent'></div>
-        </div>
-        <div className='absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white'>
+          <div className='absolute inset-0 bg-gradient-to-t from-emerald-100/30 via-transparent to-transparent'></div>
+
+          {/* Floating elements animation */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className='max-w-md'
-          >
-            <p className='text-sm md:text-base font-medium italic'>"फीस - पूरी लो ✅ प्लेसमेंट - 'भगवान भरोसे'"</p>
-            <p className='text-xs md:text-sm mt-1 opacity-90'>— Delhi Institute of Higher Education.</p>
-          </motion.div>
+            className="absolute top-1/4 left-1/4 w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full border-2 border-white/30 shadow-lg"
+            animate={{
+              y: [0, -15, 0],
+              x: [0, 10, 0]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+
+          <motion.div
+            className="absolute bottom-1/3 right-1/4 w-12 h-12 bg-emerald-400/20 backdrop-blur-sm rounded-full border-2 border-emerald-300/30 shadow-lg"
+            animate={{
+              y: [0, 20, 0],
+              x: [0, -15, 0]
+            }}
+            transition={{
+              duration: 7,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5
+            }}
+          />
         </div>
       </motion.div>
     </motion.div>

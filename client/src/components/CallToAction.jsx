@@ -100,7 +100,7 @@ const CallToAction = () => {
           src={assets.banner}
           alt="Educational analytics dashboard showing student performance metrics"
         />
-        <motion.div
+        {/* <motion.div
           whileHover={{ scale: 1.05 }}
           className='absolute bottom-6 right-6 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-md cursor-pointer border border-gray-200'
         >
@@ -111,7 +111,7 @@ const CallToAction = () => {
             </svg>
             <span className='font-medium text-sm'>View Demo</span>
           </div>
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </motion.div>
   )

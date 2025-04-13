@@ -117,7 +117,7 @@ const StudentsCard = () => {
                     Search Students
                   </button>
 
-                  <button
+                  {/* <button
                     onClick={() => setActiveFilter('React')}
                     className="px-6 py-3 bg-blue-500 bg-opacity-30 hover:bg-opacity-50 text-white rounded-lg font-medium transition-all duration-200 flex items-center cursor-pointer"
                   >
@@ -125,10 +125,10 @@ const StudentsCard = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                     Top React Developers
-                  </button>
+                  </button> */}
                 </motion.div>
 
-                <motion.div
+                {/* <motion.div
                   className="mt-8 flex flex-wrap gap-3"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -146,7 +146,7 @@ const StudentsCard = () => {
                     <span className="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>
                     100% Verified Profiles
                   </span>
-                </motion.div>
+                </motion.div> */}
               </div>
 
               <motion.div
