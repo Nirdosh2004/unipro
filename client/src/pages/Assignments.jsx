@@ -1,7 +1,8 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
+import { backendUrl } from "../App";
 
-const backendUrl = "http://localhost:4000";
+// const backendUrl = "http://localhost:4000";
 
 // Animation variants
 const containerVariants = {
