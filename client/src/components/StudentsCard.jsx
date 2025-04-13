@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { students } from '../assets/assets';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const StudentsCard = () => {
+  const navigate = useNavigate();
   const [displayCount, setDisplayCount] = useState(6);
   const [isHovered, setIsHovered] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
@@ -40,19 +42,145 @@ const StudentsCard = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-6">
+      {/* Enhanced Banner Section */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        className="relative overflow-hidden bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl shadow-xl mb-12 min-h-[400px] flex items-center"
+        initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-center mb-12"
+        transition={{ duration: 0.6 }}
       >
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Discover Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-500">Tech Talent</span>
-        </h1>
-        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-          Meet the brilliant minds shaping the future of technology. Filter by skills or search to find your perfect match.
-        </p>
+        {/* Floating background elements */}
+        <motion.div
+          className="absolute top-0 left-0 w-full h-full opacity-10"
+          style={{
+            backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+            backgroundSize: '40px 40px'
+          }}
+          animate={{
+            backgroundPosition: ['0% 0%', '100% 100%']
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "linear"
+          }}
+        />
+
+        <div className="relative z-10 p-8 sm:p-12 text-white w-full">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex flex-col lg:flex-row items-center">
+              <div className="flex-1 mb-8 lg:mb-0 lg:pr-12">
+                <motion.h2
+                  className="text-4xl sm:text-5xl font-bold mb-6 leading-tight"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  Discover Our <span className="text-yellow-300">Tech Talent</span> Community
+                </motion.h2>
+
+                <motion.p
+                  className="text-xl mb-8 opacity-90 max-w-2xl"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.9 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  Connect with top computer science students specializing in web development,
+                  data science, and cloud computing. Filter by skills and find your perfect match.
+                </motion.p>
+
+                <motion.div
+                  className="flex flex-wrap gap-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.6 }}
+                >
+                  <button
+                    onClick={() => navigate('/students')}
+                    className="px-8 py-3 bg-white text-blue-600 rounded-lg font-semibold shadow-lg hover:bg-gray-100 transition-all duration-200 flex items-center cursor-pointer"
+                  >
+                    Browse All Students
+                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </button>
+
+                  <button
+                    onClick={() => document.getElementById('search').focus()}
+                    className="px-8 py-3 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-200 flex items-center cursor-pointer"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    Search Students
+                  </button>
+
+                  <button
+                    onClick={() => setActiveFilter('React')}
+                    className="px-6 py-3 bg-blue-500 bg-opacity-30 hover:bg-opacity-50 text-white rounded-lg font-medium transition-all duration-200 flex items-center cursor-pointer"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    Top React Developers
+                  </button>
+                </motion.div>
+
+                <motion.div
+                  className="mt-8 flex flex-wrap gap-3"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.8 }}
+                >
+                  <span className="text-sm bg-white bg-opacity-20 px-3 py-1 rounded-full flex items-center cursor-default">
+                    <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                    {students.length}+ Active Students
+                  </span>
+                  <span className="text-sm bg-white bg-opacity-20 px-3 py-1 rounded-full flex items-center cursor-default">
+                    <span className="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
+                    {allSkills.length}+ Skills Available
+                  </span>
+                  <span className="text-sm bg-white bg-opacity-20 px-3 py-1 rounded-full flex items-center cursor-default">
+                    <span className="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>
+                    100% Verified Profiles
+                  </span>
+                </motion.div>
+              </div>
+
+              <motion.div
+                className="hidden lg:block w-full max-w-md"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                <div className="relative bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20 shadow-2xl">
+                  <h3 className="text-xl font-bold mb-4">Popular Skills</h3>
+                  <div className="grid grid-cols-3 gap-3">
+                    {['React', 'Node.js', 'Python', 'AWS', 'Docker', 'MongoDB', 'UI/UX', 'Data', 'AI/ML'].map((tech, i) => (
+                      <motion.button
+                        key={tech}
+                        onClick={() => setActiveFilter(tech)}
+                        className={`p-2 rounded-lg text-sm font-medium text-center cursor-pointer transition-all ${i % 3 === 0 ? 'bg-blue-500 bg-opacity-30 hover:bg-opacity-50' :
+                          i % 3 === 1 ? 'bg-purple-500 bg-opacity-30 hover:bg-opacity-50' :
+                            'bg-green-500 bg-opacity-30 hover:bg-opacity-50'
+                          }`}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {tech}
+                      </motion.button>
+                    ))}
+                  </div>
+                  <div className="mt-6 text-sm opacity-80 cursor-default">
+                    <p>Click any skill to filter students</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
       </motion.div>
 
       {/* Search and Filter Controls */}
@@ -71,9 +199,10 @@ const StudentsCard = () => {
               </svg>
             </div>
             <input
+              id="search"
               type="text"
               placeholder="Search students by name, email or ID..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 shadow-sm"
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 shadow-sm cursor-text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -84,7 +213,8 @@ const StudentsCard = () => {
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => setActiveFilter('all')}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${activeFilter === 'all' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer ${activeFilter === 'all' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
           >
             All Students
           </motion.button>
@@ -93,14 +223,15 @@ const StudentsCard = () => {
               key={skill}
               whileTap={{ scale: 0.95 }}
               onClick={() => setActiveFilter(skill)}
-              className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${activeFilter === skill ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+              className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer ${activeFilter === skill ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
             >
               {skill}
             </motion.button>
           ))}
           {allSkills.length > 5 && (
-            <div className="relative group">
-              <button className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-xs font-medium">
+            <div className="relative group cursor-pointer">
+              <button className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-xs font-medium cursor-pointer">
                 +{allSkills.length - 5}
               </button>
               <div className="absolute right-0 mt-1 w-48 bg-white rounded-md shadow-lg z-10 p-2 hidden group-hover:block">
@@ -109,7 +240,8 @@ const StudentsCard = () => {
                     <button
                       key={skill}
                       onClick={() => setActiveFilter(skill)}
-                      className={`px-2 py-1 rounded text-xs font-medium transition-all ${activeFilter === skill ? 'bg-blue-100 text-blue-800' : 'hover:bg-gray-100'}`}
+                      className={`px-2 py-1 rounded text-xs font-medium transition-all cursor-pointer ${activeFilter === skill ? 'bg-blue-100 text-blue-800' : 'hover:bg-gray-100'
+                        }`}
                     >
                       {skill}
                     </button>
@@ -241,7 +373,10 @@ const StudentsCard = () => {
                       }}
                       transition={{ duration: 0.3 }}
                     >
-                      <button className="w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-2 rounded-lg shadow hover:shadow-md transition-all hover:from-blue-700 hover:to-blue-600">
+                      <button
+                        onClick={() => navigate(`/students/${student.enrollmentNo}`)}
+                        className="w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-2 rounded-lg shadow hover:shadow-md transition-all hover:from-blue-700 hover:to-blue-600 cursor-pointer"
+                      >
                         View Profile
                       </button>
                     </motion.div>
@@ -256,7 +391,7 @@ const StudentsCard = () => {
             <div className="text-center mt-12">
               <motion.button
                 onClick={loadMore}
-                className="bg-white border border-gray-300 text-gray-700 px-6 py-3 rounded-full shadow-sm hover:bg-gray-50 hover:shadow-md transition-all duration-200 font-medium"
+                className="bg-white border border-gray-300 text-gray-700 px-6 py-3 rounded-full shadow-sm hover:bg-gray-50 hover:shadow-md transition-all duration-200 font-medium cursor-pointer"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -284,7 +419,7 @@ const StudentsCard = () => {
                   setSearchTerm('');
                   setActiveFilter('all');
                 }}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 cursor-pointer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

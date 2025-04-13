@@ -197,4 +197,8 @@ const removeAssignment = async (req, res) => {
   }
 };
 
+// export const singleAssignment = async () => {
+
+// }
+
 export { addAssignment, listAssignment, removeAssignment }
