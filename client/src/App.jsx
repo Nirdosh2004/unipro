@@ -19,7 +19,7 @@ export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const App = () => {
   return (
-    <div className='mx-10 my-5'>
+    <div className='mx-2 my-5'>
       <ToastContainer />
       <Navbar />
 
