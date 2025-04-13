@@ -26,6 +26,7 @@ app.use('/api/resource', resourceRouter)
 
 
 
+
 app.get('/', (req, res) => {
   res.send("API Working")
 })

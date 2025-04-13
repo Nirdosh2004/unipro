@@ -238,5 +238,50 @@ const removeStudent = async (req, res) => {
   }
 };
 
+// function to access single student
+export const singleStudent = async (req, res) => {
+  try {
+    const { _id } = req.params;
+
+    // Validate ID format (MongoDB ObjectId is 24-character hex string)
+    if (!_id.match(/^[0-9a-fA-F]{24}$/)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid student ID format'
+      });
+    }
+
+    const student = await studentsModel.findById(_id)
+      .select('-__v') // Exclude version key
+      .lean(); // Convert to plain JavaScript object
+
+    if (!student) {
+      return res.status(404).json({
+        success: false,
+        message: `No student found with ID: ${_id}`
+      });
+    }
+
+    // If you want to transform the data before sending
+    const formattedStudent = {
+      ...student,
+      // Add any transformations here if needed
+    };
+
+    res.status(200).json({
+      success: true,
+      data: formattedStudent
+    });
+
+  } catch (error) {
+    console.error(`Error fetching student ${req.params._id}:`, error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error while fetching student',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
+  }
+};
+
 
 export { addStudent, listStudents, removeStudent }

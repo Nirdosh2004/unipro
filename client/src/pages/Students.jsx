@@ -1,13 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { students } from '../assets/assets';
 import { motion, AnimatePresence } from 'framer-motion';
+import { backendUrl } from '../App';
 
 const Students = () => {
+  // const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:4000/';
+  const [students, setStudents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [])
+    fetchStudents();
+  }, []);
+
+  const fetchStudents = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(`${backendUrl}/api/student/list`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch students');
+      }
+      const data = await response.json();
+      if (data.success) {
+        setStudents(data.data);
+      } else {
+        throw new Error(data.message || 'Failed to fetch students');
+      }
+      setLoading(false);
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
+  };
 
   const [displayCount, setDisplayCount] = useState(6);
   const [isHovered, setIsHovered] = useState(null);
@@ -15,11 +40,12 @@ const Students = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   // Get all unique skills for filtering
-  const allSkills = [...new Set(students.flatMap(student => student.skills))];
+  const allSkills = [...new Set(students.flatMap(student => student.technicalSkills || []))];
 
   // Filter students based on active filter and search term
   const filteredStudents = students.filter(student => {
-    const matchesFilter = activeFilter === 'all' || student.skills.includes(activeFilter);
+    const matchesFilter = activeFilter === 'all' ||
+      (student.technicalSkills && student.technicalSkills.includes(activeFilter));
     const matchesSearch = student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       student.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       student.enrollmentNo.toLowerCase().includes(searchTerm.toLowerCase());
@@ -49,6 +75,37 @@ const Students = () => {
     visible: { opacity: 1, y: 0 },
     exit: { opacity: 0, scale: 0.9 }
   };
+
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-12 min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <p className="mt-4 text-lg text-gray-700">Loading students...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 py-12 min-h-screen flex items-center justify-center">
+        <div className="text-center max-w-md">
+          <svg className="mx-auto h-16 w-16 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <h3 className="mt-2 text-lg font-medium text-gray-900">Error loading students</h3>
+          <p className="mt-1 text-gray-500">{error}</p>
+          <button
+            onClick={fetchStudents}
+            className="mt-6 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -136,18 +193,18 @@ const Students = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {displayedStudents.map((student, index) => (
                 <motion.div
-                  key={student.enrollmentNo}
+                  key={student._id}
                   variants={cardVariants}
                   initial="hidden"
                   animate="visible"
                   exit="exit"
                   transition={{ duration: 0.3, delay: index * 0.05 }}
                   className="relative"
-                  onMouseEnter={() => setIsHovered(student.enrollmentNo)}
+                  onMouseEnter={() => setIsHovered(student._id)}
                   onMouseLeave={() => setIsHovered(null)}
                 >
                   <Link
-                    to={`/students/${student.enrollmentNo}`}
+                    to={`/students/${student._id}`}
                     className="block h-full"
                   >
                     <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 h-full flex flex-col border border-gray-100">
@@ -156,8 +213,8 @@ const Students = () => {
                         <motion.div
                           className={`flex items-center justify-center rounded-full w-16 h-16 ${getColor(index)}`}
                           animate={{
-                            scale: isHovered === student.enrollmentNo ? [1, 1.05, 1] : 1,
-                            rotate: isHovered === student.enrollmentNo ? [0, 5, -5, 0] : 0
+                            scale: isHovered === student._id ? [1, 1.05, 1] : 1,
+                            rotate: isHovered === student._id ? [0, 5, -5, 0] : 0
                           }}
                           transition={{ duration: 0.6 }}
                         >
@@ -170,7 +227,7 @@ const Students = () => {
                           <motion.h3
                             className="text-xl font-bold text-gray-900 truncate"
                             animate={{
-                              color: isHovered === student.enrollmentNo ? '#3b82f6' : '#111827'
+                              color: isHovered === student._id ? '#3b82f6' : '#111827'
                             }}
                           >
                             {student.name}
@@ -194,10 +251,10 @@ const Students = () => {
                             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                             </svg>
-                            Top Skills
+                            Technical Skills
                           </h3>
                           <div className="flex flex-wrap gap-2">
-                            {student.skills.slice(0, 3).map((skill) => (
+                            {student.technicalSkills?.slice(0, 3).map((skill) => (
                               <motion.span
                                 key={skill}
                                 className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full"
@@ -212,9 +269,9 @@ const Students = () => {
                         {/* Social Links */}
                         <div className="mt-auto pt-4 border-t border-gray-100">
                           <div className="flex space-x-3">
-                            {student.social?.github && (
+                            {student.githubLink && (
                               <motion.a
-                                href={student.social.github}
+                                href={student.githubLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-gray-500 hover:text-gray-900"
@@ -227,9 +284,9 @@ const Students = () => {
                                 </svg>
                               </motion.a>
                             )}
-                            {student.social?.linkedin && (
+                            {student.linkedinLink && (
                               <motion.a
-                                href={student.social.linkedin}
+                                href={student.linkedinLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-gray-500 hover:text-blue-700"
@@ -250,8 +307,8 @@ const Students = () => {
                       <motion.div
                         className="px-6 pb-6"
                         animate={{
-                          opacity: isHovered === student.enrollmentNo ? 1 : 0.8,
-                          y: isHovered === student.enrollmentNo ? 0 : 5
+                          opacity: isHovered === student._id ? 1 : 0.8,
+                          y: isHovered === student._id ? 0 : 5
                         }}
                       >
                         <div className="w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-2 rounded-lg shadow hover:shadow-md transition-all">
