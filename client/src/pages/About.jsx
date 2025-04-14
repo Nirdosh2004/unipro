@@ -449,9 +449,20 @@ const About = () => {
                 PRO
               </span>
             </div>
-            <p className="text-lg text-gray-600 mb-4">Frontend Developer & Problem Solver</p>
+            <p className="text-lg text-gray-600 mb-4">Full Stack Developer & Problem Solver</p>
 
             <div className="flex flex-wrap gap-3 mb-4">
+               <motion.a
+                href="https://github.com/Nirdosh2004"
+                target="_blank"
+                rel="noopener"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg flex items-center gap-2 shadow-xs hover:shadow-sm"
+              >
+                <FiGithub className="text-gray-600" />
+                Github
+              </motion.a>
               <motion.a
                 href="https://calm-kitsune-ee5836.netlify.app/"
                 target="_blank"
