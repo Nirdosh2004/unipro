@@ -752,7 +752,7 @@ const About = () => {
         </AnimatePresence>
 
         {/* Floating action button */}
-        <motion.div
+        {/* <motion.div
           drag
           dragConstraints={constraintsRef}
           whileHover={{ scale: 1.1 }}
@@ -760,7 +760,7 @@ const About = () => {
           className="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-br from-blue-500 to-green-500 rounded-full shadow-lg flex items-center justify-center cursor-grab"
         >
           <FiGithub className="text-white text-xl" />
-        </motion.div>
+        </motion.div> */}
       </div>
     </motion.div>
   );
