@@ -317,6 +317,7 @@
 import { motion, useMotionValue, useTransform, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import { FiGithub, FiLinkedin, FiExternalLink, FiClock, FiMapPin, FiCode, FiLayers } from "react-icons/fi";
+import LiveClock from "../components/LiveClock";
 
 // Animation variants
 const containerVariants = {
@@ -452,7 +453,7 @@ const About = () => {
             <p className="text-lg text-gray-600 mb-4">Full Stack Developer & Problem Solver</p>
 
             <div className="flex flex-wrap gap-3 mb-4">
-               <motion.a
+              <motion.a
                 href="https://github.com/Nirdosh2004"
                 target="_blank"
                 rel="noopener"
@@ -504,8 +505,8 @@ const About = () => {
                 Greater Noida, India
               </span>
               <span className="flex items-center gap-1">
-                <FiClock className="text-gray-400" />
-                UTC +05:30
+                {/* <FiClock className="text-gray-400" /> */}
+                <LiveClock />
               </span>
             </div>
           </div>
@@ -561,10 +562,10 @@ const About = () => {
                     Bio
                   </h3>
                   <p className="text-gray-600 mb-4">
-                    Hey there! I'm Nirdosh, a passionate developer with a love for creating beautiful, functional interfaces and solving complex problems.
+                    Hey! I'm Nirdosh — but you might know me as rrisavv. I'm a full-stack developer who loves turning ideas into slick, working apps. Whether it's crafting clean UIs or cracking backend bugs, I’m all about building cool stuff that just works.
                   </p>
                   <p className="text-gray-600">
-                    Currently focusing on frontend development with React, but always exploring new technologies to expand my skillset.
+                    Right now, I'm all about AI — figuring out how it works, what it can do, and how to make cool stuff with it.
                   </p>
                 </motion.div>
 
@@ -578,9 +579,19 @@ const About = () => {
                   </h3>
                   <div className="space-y-4">
                     <div>
-                      <h4 className="font-medium text-gray-700">Bachelor's in Computer Science</h4>
-                      <p className="text-sm text-gray-500">Greater Noida Institute of Technology</p>
-                      <p className="text-xs text-gray-400 mt-1">2021 - 2025</p>
+                      <h4 className="font-medium text-gray-700">Bachelor's in Computer Application</h4>
+                      <p className="text-sm text-gray-500">Delhi Institute of Higher Education</p>
+                      <p className="text-xs text-gray-400 mt-1">2022 - 2025</p>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-gray-700">IIT-JEE Preparation</h4>
+                      <p className="text-sm text-gray-500">Dedicated preparation, did not qualify.</p>
+                      <p className="text-xs text-gray-400 mt-1">2021 - 2022</p>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-gray-700">Studied Science with Math</h4>
+                      <p className="text-sm text-gray-500">Saraswati Shishu Mandir Senior Secondary School</p>
+                      <p className="text-xs text-gray-400 mt-1">2017 - 2021</p>
                     </div>
                   </div>
                 </motion.div>
@@ -594,7 +605,7 @@ const About = () => {
                     Interests
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {['UI/UX Design', 'Open Source', 'Competitive Programming', '3D Modeling', 'Photography'].map((interest, i) => (
+                    {['UI/UX Design', 'Reels Scrolling ', 'Memes Sharing', 'Criticizing Politicians', 'Netflix Bingeing', 'Procrastination', 'Pretending to Work'].map((interest, i) => (
                       <motion.span
                         key={i}
                         initial={{ opacity: 0, y: 10 }}
@@ -615,31 +626,31 @@ const About = () => {
                 {[
                   {
                     category: 'Frontend', skills: [
-                      { name: 'React', level: 85 },
-                      { name: 'JavaScript', level: 90 },
-                      { name: 'HTML/CSS', level: 92 },
-                      { name: 'Tailwind CSS', level: 80 }
+                      { name: 'React', level: 55.02 },
+                      { name: 'JavaScript', level: 69.96 },
+                      { name: 'HTML/CSS', level: 92.88 },
+                      { name: 'Tailwind CSS', level: 83.76 }
                     ]
                   },
                   {
                     category: 'Backend', skills: [
-                      { name: 'Node.js', level: 75 },
-                      { name: 'Express', level: 70 },
-                      { name: 'MongoDB', level: 65 }
+                      { name: 'Node.js', level: 65.08 },
+                      { name: 'Express', level: 58.54 },
+                      { name: 'MongoDB', level: 89.99 }
                     ]
                   },
                   {
                     category: 'Tools', skills: [
-                      { name: 'Git', level: 80 },
-                      { name: 'Figma', level: 70 },
-                      { name: 'VS Code', level: 90 }
+                      { name: 'Git', level: 43.98 },
+                      { name: 'Figma', level: 77.65 },
+                      { name: 'VS Code', level: 90.19 }
                     ]
                   },
                   {
                     category: 'Other', skills: [
-                      { name: 'Data Structures', level: 85 },
-                      { name: 'Algorithms', level: 80 },
-                      { name: 'Problem Solving', level: 85 }
+                      { name: 'Data Structures', level: 55.87 },
+                      { name: 'Algorithms', level: 63.54 },
+                      { name: 'Problem Solving', level: 45.09 }
                     ]
                   }
                 ].map((group, i) => (
@@ -680,21 +691,21 @@ const About = () => {
                 {[
                   {
                     title: "UniPro Student Portal",
-                    description: "Comprehensive platform for students to manage assignments, resources, and academic progress.",
-                    tags: ["React", "Tailwind CSS", "Framer Motion"],
-                    link: "#"
+                    description: "UniPro is a comprehensive platform for students to manage their assignments, resources, and academic overview. It provides a personalized student profile showcasing skills, projects, and achievements, acting as a digital portfolio. It serves as a one-stop solution for all academic needs, helping students stay organized and on top of their work.",
+                    tags: ["React", "MongoDB", "Express", "Node.js", "Tailwind CSS", "Framer Motion"],
+                    link: "https://unipro-rrisavv.vercel.app/"
                   },
                   {
-                    title: "Algorithm Visualizer",
-                    description: "Interactive tool to visualize sorting and pathfinding algorithms with customizable parameters.",
-                    tags: ["JavaScript", "D3.js"],
-                    link: "#"
+                    title: "SuperStock - Inventory Management System",
+                    description: "SuperStock is an intuitive inventory management system designed for supermarket grocery shops, helping managers track items, their brands, availability, prices, and more. It ensures efficient stock management and real-time updates to keep everything running smoothly.",
+                    tags: ["React", "MongoDB", "Express", "Node.js", "Tailwind CSS", "Framer Motion"],
+                    link: "https://superstock-rrisavv.vercel.app/"
                   },
                   {
-                    title: "E-commerce Dashboard",
-                    description: "Admin dashboard for managing products, orders, and customer data with analytics.",
-                    tags: ["React", "Node.js", "MongoDB"],
-                    link: "#"
+                    title: "Seven.Ecom - E-commerce Website ",
+                    description: "Seven-Ecom is a modern eCommerce platform designed to provide a seamless shopping experience. It offers a wide range of products with easy navigation, secure payments, and efficient order tracking. Whether you're buying gadgets, apparel, or groceries, Seven-Ecom ensures a smooth, fast, and enjoyable shopping journey for every user.",
+                    tags: ["React", "Node.js", "MongoDB", "Node.js", "Online Tutorial"],
+                    link: "https://ecommerce-app-frontend-steel.vercel.app/"
                   },
                   {
                     title: "Portfolio V1",
