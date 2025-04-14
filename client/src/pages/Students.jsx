@@ -34,7 +34,7 @@ const Students = () => {
     }
   };
 
-  const [displayCount, setDisplayCount] = useState(6);
+  const [displayCount, setDisplayCount] = useState(100);
   const [isHovered, setIsHovered] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
