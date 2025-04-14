@@ -205,7 +205,16 @@ const Footer = () => {
               <a href="" className="hover:text-green-600 transition-colors">Terms of Service</a>
               <a href="" className="hover:text-green-600 transition-colors">Cookies</a>
             </div>
+            
           </div>
+          
+          <p class="border-t border-gray-300 pt-6 max-w-full break-words text-medium leading-relaxed mt-4">
+    Some buttons might not work. This is not a bug; it's simply because the functionality for those features has not yet been implemented. Please bear with me, as I am still working on it. Thank you for your patience. - Nirdosh Kushwaha.
+</p>
+<p class="text-sm text-gray-500 ">
+    Note: This is a temporary state. Full functionality will be available in a future update... you know, when I monetize it, haha.
+</p>
+
         </motion.div>
       </div>
     </motion.footer>
