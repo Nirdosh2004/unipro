@@ -41,9 +41,9 @@ const Navbar = () => {
           <NavLink to="/resources" className={getNavLinkStyle}>
             <span className="block py-2 hover:translate-y-[-2px] transition-transform duration-300">Resources</span>
           </NavLink>
-          <NavLink to="/about" className={getNavLinkStyle}>
+          {/* <NavLink to="/about" className={getNavLinkStyle}>
             <span className="block py-2 hover:translate-y-[-2px] transition-transform duration-300">About</span>
-          </NavLink>
+          </NavLink> */}
 
           {/* Admin Dashboard Button - Always visible */}
           {/* <button

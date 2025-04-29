@@ -47,7 +47,7 @@ const CallToAction = () => {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               className='bg-green-600 text-white hover:bg-green-700 transition-all font-semibold shadow-md px-6 py-3 rounded-lg flex items-center gap-2'
-              onClick={() => navigate('/about')}
+              onClick={() => window.open('https://rrisavv.onrender.com/', '_blank')}
             >
               Unplaced genius (me) portfolio. Hire me, please.
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
