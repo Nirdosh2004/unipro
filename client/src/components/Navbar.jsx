@@ -104,7 +104,6 @@ const Navbar = () => {
                   { to: "/students", label: "Students", icon: "" },
                   { to: "/assignments", label: "Assignments", icon: "" },
                   { to: "/resources", label: "Resources", icon: "" },
-                  { to: "/about", label: "About", icon: "" },
                 ].map((link, index) => (
                   <NavLink
                     key={link.to}
